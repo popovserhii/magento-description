@@ -1,0 +1,93 @@
+<?xml version="1.0" ?>
+<config>
+    <modules>
+        <Popov_Description>
+            <version>0.0.1</version>
+        </Popov_Description>
+    </modules>
+    <global>
+        <resources>
+            <popov_description_setup>
+                <setup>
+                    <module>Popov_Description</module>
+                </setup>
+            </popov_description_setup>
+        </resources>
+        <helpers>
+            <popov_description>
+                <class>Popov_Description_Helper</class>
+            </popov_description>
+        </helpers>
+        <!--<blocks>
+        	<popov_description>
+        		<class>Popov_Description_Block</class>
+        	</popov_description>
+        </blocks>-->
+        
+        <models>
+            <popov_description>
+                <class>Popov_Description_Model</class>
+                <resourceModel>popov_description_resource</resourceModel>
+            </popov_description>
+            <popov_description_resource>
+                <class>Popov_Description_Model_Resource</class>
+                <entities>
+                    <table_description>
+                        <table>Popov_description</table>
+                    </table_description>
+                </entities>
+            </popov_description_resource>
+        </models>
+
+	    <events>
+		    <controller_action_layout_generate_blocks_after> <!-- this name is really important, use this to indicate the layout-render-before event -->
+			    <observers>
+				    <popov_description_observerr>
+					    <type>singleton</type>
+					    <class>Popov_Description_Model_Observer</class>
+					    <method>hookToChangeCategoryDescription</method>
+				    </popov_description_observerr>
+			    </observers>
+		    </controller_action_layout_generate_blocks_after>
+		</events>
+    </global>
+
+	<frontend>
+		<layout>
+			<updates>
+				<agere_seo>
+					<file>popov/description.xml</file>
+				</agere_seo>
+			</updates>
+		</layout>
+	</frontend>
+
+    <!--<admin>
+        <routers>
+            <popov_description_admin>
+                <use>admin</use>
+                <args>
+                    <module>Popov_Description</module>
+                    <frontName>popov_description_admin</frontName>
+                </args>
+            </popov_description_admin>
+        </routers>
+    </admin>-->
+
+	<!-- is important place this code (<adminhtml/>) in config.xml if you wand place this in adminhtml.xml nothing happen -->
+	<!-- @see http://stackoverflow.com/a/11864693/1335142 -->
+	<!--<adminhtml>
+	    <layout>
+		    <updates>
+			    <popov_description_admin>
+				    &lt;!&ndash;
+					We again keep a nice naming convention and make our module upgrade proof by placing it in a separate folder
+					- Since we are in the adminhtml node, this will look for the XML file in the app/design/adminhtml/default/default root folder
+					&ndash;&gt;
+				    <file>popov/description.xml</file>
+			    </popov_description_admin>
+		    </updates>
+	    </layout>
+    </adminhtml>-->
+
+</config>
