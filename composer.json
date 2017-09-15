@@ -1,0 +1,17 @@
+{
+    "name": "popov/magento-description",
+    "type": "magento-module",
+    "license":"MIT Licence",
+    "description":"Resolving category description conflicts",
+    "authors":[{
+        "name":"Serhii Popov",
+        "email":"popow.sergiy@gmail.com"
+    }],
+    "extra": {
+        "map": [        
+          ["app/code/local/Popov/Description/", "app/code/local/Popov/Description/"],
+          ["app/etc/modules/Popov_Description.xml", "app/etc/modules/Popov_Description.xml"],
+          ["app/design/frontend/base/default/layout/popov/description.xml", "app/design/frontend/base/default/layout/popov/description.xml"]
+        ]
+    }
+}
