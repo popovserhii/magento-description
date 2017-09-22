@@ -8,9 +8,9 @@
         "email":"popow.sergiy@gmail.com"
     }],
     "extra": {
-        "map": [        
-          ["app/code/local/Popov/Description/", "app/code/local/Popov/Description/"],
+        "map": [
           ["app/etc/modules/Popov_Description.xml", "app/etc/modules/Popov_Description.xml"],
+          ["app/code/local/Popov/Description/", "app/code/local/Popov/Description/"],
           ["app/design/frontend/base/default/layout/popov/description.xml", "app/design/frontend/base/default/layout/popov/description.xml"]
         ]
     }
