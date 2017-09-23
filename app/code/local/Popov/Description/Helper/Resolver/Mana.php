@@ -68,6 +68,14 @@ class Popov_Description_Helper_Resolver_Mana extends Mage_Core_Helper_Abstract
         /** @var Mage_Eav_Model_Entity_Attribute_Frontend_Default $attrFront */
         $filters = Mage::getSingleton('catalog/layer')->getState()->getFilters();
         foreach ($filters as $filter) {
+            $attribute = $filter->getFilter()->getData('attribute_model');
+            if (is_null($attribute)) {
+                //$attribute = Mage::getModel('catalog/resource_eav_attribute');
+                // Mage::throwException(Mage::helper('catalog')->__('The attribute model is not defined'));
+                continue;
+            }
+
+
             $attrFront = $filter->getFilter()->getAttributeModel()->getFrontend();
             $attr = $attrFront->getAttribute();
             $seoAttr = $attr->getAttributeCode();
