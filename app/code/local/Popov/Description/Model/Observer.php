@@ -19,49 +19,36 @@ class Popov_Description_Model_Observer extends Varien_Event_Observer
         }
     }
 
-    /**
-     * Modify category data and meta head
-     * Event: core_block_abstract_to_html_before
-     *
-     * @param Varien_Event_Observer $observer
-     * @return void
-     */
-    public function hookToModifyCategoryName(Varien_Event_Observer $observer)
+    public function addCustomAttributeOutputHandler(Varien_Event_Observer $observer)
     {
-        /** @var Mage_Page_Block_Html_Head $block */
-        $block = $observer->getBlock();
+        $outputHelper = $observer->getEvent()->getHelper();
+        //$outputHelper->addHandler('productAttribute', $this);
+        $outputHelper->addHandler('categoryAttribute', $this);
+    }
 
-        if ($block->getNameInLayout() != 'head') {
-            return false;
-        }
-
-        if ('catalog_category_view' == Mage::helper('mageworx_seoall/request')->getCurrentFullActionName()) {
-            $category = Mage::registry('current_category');
-            if (is_object($category)
-                && Mage::helper('mageworx_seoxtemplates/config')->isUseCategorySeoName()
+    public function categoryAttribute(Mage_Catalog_Helper_Output $outputHelper, $outputHtml, $params)
+    {
+        $category = $params['category'];
+        if (($params['attribute'] === 'name')) {
+            if (Mage::helper('mageworx_seoxtemplates/config')->isUseCategorySeoName()
                 && $category->getCategorySeoName()
             ) {
-                $this->modifyCategoryName($category);
-
-                /** @var MageWorx_SeoXTemplates_Model_DynamicRenderer_Category $dynamicRenderer */
-                /*$dynamicRenderer = Mage::getSingleton('mageworx_seoxtemplates/dynamicRenderer_category');
-                $dynamicRenderer->modifyCategoryTitle($category, $block);
-                $dynamicRenderer->modifyCategoryMetaDescription($category, $block);
-                $dynamicRenderer->modifyCategoryMetaKeywords($category, $block);
-                $dynamicRenderer->modifyCategoryDescription($category);*/
+                $outputHtml = $this->modifyCategoryName($category);
             }
+        } elseif ($params['attribute'] === 'description') {
+            $outputHtml = $category->getDescription();
         }
+        return $outputHtml;
     }
 
     /**
      * @param Mage_Catalog_Model_Category $category
-     * @param Mage_Page_Block_Html_Head $block
-     * @return boolean
+     * @return string
      */
     public function modifyCategoryName($category)
     {
         if ($this->_isConvertedName) {
-            return true;
+            return $this->_isConvertedName;
         }
 
         /** @var MageWorx_SeoXTemplates_Model_Converter_Category_Metatitle $metaTitleConverter */
@@ -73,12 +60,12 @@ class Popov_Description_Model_Observer extends Varien_Event_Observer
         if (!empty($convertedName) && $name != $convertedName) {
             $convertedName = trim(htmlspecialchars(html_entity_decode($convertedName, ENT_QUOTES, 'UTF-8')));
             if ($convertedName) {
-                $category->setName($convertedName);
-                $this->_isConvertedName = true;
-                return true;
+                //$category->setName($convertedName);
+                //return true;
+                $this->_isConvertedName = $convertedName;
             }
         }
 
-        return false;
+        return $this->_isConvertedName;
     }
 }

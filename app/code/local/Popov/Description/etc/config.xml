@@ -38,28 +38,6 @@
                 </entities>
             </popov_description_resource>
         </models>
-
-	    <events>
-		    <controller_action_layout_generate_blocks_after> <!-- this name is really important, use this to indicate the layout-render-before event -->
-			    <observers>
-				    <popov_description_observerr>
-					    <type>singleton</type>
-					    <class>Popov_Description_Model_Observer</class>
-					    <method>hookToChangeCategoryDescription</method>
-				    </popov_description_observerr>
-			    </observers>
-		    </controller_action_layout_generate_blocks_after>
-
-            <core_block_abstract_to_html_before>
-                <observers>
-                    <popov_description_modify_category_name>
-                        <type>singleton</type>
-                        <class>Popov_Description_Model_Observer</class>
-                        <method>hookToModifyCategoryName</method>
-                    </popov_description_modify_category_name>
-                </observers>
-            </core_block_abstract_to_html_before>
-		</events>
     </global>
 
 	<frontend>
@@ -70,6 +48,38 @@
 				</agere_seo>
 			</updates>
 		</layout>
+
+        <events>
+            <controller_action_layout_generate_blocks_after> <!-- this name is really important, use this to indicate the layout-render-before event -->
+                <observers>
+                    <popov_description_observerr>
+                        <type>singleton</type>
+                        <class>Popov_Description_Model_Observer</class>
+                        <method>hookToChangeCategoryDescription</method>
+                    </popov_description_observerr>
+                </observers>
+            </controller_action_layout_generate_blocks_after>
+
+            <!--<core_block_abstract_to_html_before>
+                <observers>
+                    <popov_description_modify_category_name>
+                        <type>singleton</type>
+                        <class>Popov_Description_Model_Observer</class>
+                        <method>hookToModifyCategoryName</method>
+                    </popov_description_modify_category_name>
+                </observers>
+            </core_block_abstract_to_html_before>-->
+
+            <catalog_helper_output_construct>
+                <observers>
+                    <popov_description_observerr_attributes>
+                        <type>singleton</type>
+                        <class>popov_description/observer</class>
+                        <method>addCustomAttributeOutputHandler</method>
+                    </popov_description_observerr_attributes>
+                </observers>
+            </catalog_helper_output_construct>
+        </events>
 	</frontend>
 
     <!--<admin>
