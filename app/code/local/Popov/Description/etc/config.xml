@@ -49,6 +49,16 @@
 				    </popov_description_observerr>
 			    </observers>
 		    </controller_action_layout_generate_blocks_after>
+
+            <core_block_abstract_to_html_before>
+                <observers>
+                    <popov_description_modify_category_name>
+                        <type>singleton</type>
+                        <class>Popov_Description_Model_Observer</class>
+                        <method>hookToModifyCategoryName</method>
+                    </popov_description_modify_category_name>
+                </observers>
+            </core_block_abstract_to_html_before>
 		</events>
     </global>
 

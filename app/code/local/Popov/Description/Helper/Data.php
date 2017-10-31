@@ -14,7 +14,5 @@ class Popov_Description_Helper_Data extends Mage_Core_Helper_Abstract
             $helper = Mage::helper($helperKey);
             $helper->resolve($request);
         }
-
     }
-
 }
