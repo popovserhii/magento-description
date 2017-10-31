@@ -38,6 +38,18 @@
                 </entities>
             </popov_description_resource>
         </models>
+
+        <events>
+            <controller_action_layout_render_before>
+                <observers>
+                    <m_seo_observer_meta>
+                        <type>singleton</type>
+                        <class>popov_description/observer</class>
+                        <method>stub</method>
+                    </m_seo_observer_meta>
+                </observers>
+            </controller_action_layout_render_before>
+        </events>
     </global>
 
 	<frontend>
@@ -79,6 +91,16 @@
                     </popov_description_observerr_attributes>
                 </observers>
             </catalog_helper_output_construct>
+
+            <controller_action_layout_render_before>
+                <observers>
+                    <m_seo_observer_meta>
+                        <type>singleton</type>
+                        <class>popov_description/observer</class>
+                        <method>stub</method>
+                    </m_seo_observer_meta>
+                </observers>
+            </controller_action_layout_render_before>
         </events>
 	</frontend>
 
