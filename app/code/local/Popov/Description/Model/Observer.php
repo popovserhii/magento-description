@@ -17,9 +17,9 @@ class Popov_Description_Model_Observer extends Varien_Event_Observer
 
     public function hookToChangeCategoryDescription(Varien_Event_Observer $observer)
     {
-        if (!Mage::app()->getStore()->isAdmin()) {
-            Mage::helper('popov_description')->resolve();
-        }
+        #if (!Mage::app()->getStore()->isAdmin()) {
+        #    Mage::helper('popov_description')->resolve();
+        #}
     }
 
     public function addCustomAttributeOutputHandler(Varien_Event_Observer $observer)
