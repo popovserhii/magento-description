@@ -33,6 +33,8 @@ class Popov_Description_Helper_Resolver_Mana extends Mage_Core_Helper_Abstract
 
             return;
         }
+		
+		return; // €к ви€снилось потр≥бно т€гнути геть з ≥ншого м≥сц€ опис
 
         // only for Megamuscle
         if (!isset($fitting['value']['manufacturer'])) {
