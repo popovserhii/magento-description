@@ -34,16 +34,18 @@ class Popov_Description_Helper_Resolver_Mana extends Mage_Core_Helper_Abstract
             return;
         }
 		
-		return; // ˇÍ ‚ËˇÒÌËÎÓÒ¸ ÔÓÚ≥·ÌÓ Úˇ„ÌÛÚË „ÂÚ¸ Á ≥Ì¯Ó„Ó Ï≥Òˆˇ ÓÔËÒ
+
 
         // only for Megamuscle
         if (!isset($fitting['value']['manufacturer'])) {
             return;
-        } elseif (count($fitting['value']['manufacturer']) > 1) {
+        } elseif (count($fitting['value']['manufacturer']) > 0) {
             $category->setDescription('');
 
             return;
         }
+
+        return; // —è–∫ –≤–∏—è—Å–Ω–∏–ª–æ—Å—å –ø–æ—Ç—Ä—ñ–±–Ω–æ —Ç—è–≥–Ω—É—Ç–∏ –≥–µ—Ç—å –∑ —ñ–Ω—à–æ–≥–æ –º—ñ—Å—Ü—è –æ–ø–∏—Å
 
         /* @var $optionPage Mana_AttributePage_Model_OptionPage_Store */
         $optionPage = Mage::getModel('mana_attributepage/optionPage_store');
